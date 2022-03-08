@@ -5,5 +5,5 @@
 
 TEST_CASE("detect the ranges and check if the number of readings in each range matches the expected value.") {
   int input_range[]= {4,5};
-  REQUIRE(findReadingsFromRange(input_range) == "4-5,2"); 
+  REQUIRE(strcmp (findReadingsFromRange(input_range), "4-5,2")); 
 }

@@ -1,5 +1,6 @@
 #include "detect_ranges.h"
-
+#include <stdio.h>
+#include <cstddef>
 
 char* findReadingsFromRange (int *input)
 {
