@@ -1,5 +1,6 @@
 #include "detect_ranges.h"
 #include <stdio.h>
+#include <string.h>
 #include <cstddef>
 #include <stdlib.h>
 char output_string[20] = {0};
