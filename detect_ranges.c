@@ -9,7 +9,7 @@ void sortInAscendingOrder (int *sorted_in, int size)
 	int outer_loop, inner_loop, temp;
 	for (outer_loop = 0; outer_loop < size -1; outer_loop++)
 	{
-		for (inner_loop = outer_loop+1; inner_loop < size; inner_loop++)//3,3,4,5
+		for (inner_loop = outer_loop+1; inner_loop < size; inner_loop++)
 		{
 			if (sorted_in[outer_loop] > sorted_in[inner_loop])
 			{
@@ -21,10 +21,28 @@ void sortInAscendingOrder (int *sorted_in, int size)
 	}
 }
 
-char* findReadingsFromRange (int *in_arr, int size)
+char* generateReadingsInEachRange (int *in_arr, int size, int first_element, char *result)
+{
+	int i;
+	
+	for (i = 0; i < (size - 1); i++)
+	{
+		if ((in_arr[i+1] - in_arr[i]) > 1)
+		{
+			sprintf (output_string, "%d-%d,%d;", in_arr[first_element],in_arr[i], i+1-first_element);
+			first_element = i+1;
+			strcat(result, output_string);
+			memset(output_string, '\0', sizeof(output_string));
+		}
+	}
+	sprintf (output_string, "%d-%d,%d", in_arr[first_element],in_arr[i], i+1-first_element);
+	strcat(result, output_string);
+	return result;
+}
+
+char* getRangeAndReadings (int *in_arr, int size, char *result)
 {
 	sortInAscendingOrder(in_arr, size);
-	
-	sprintf (output_string, "%d-%d,%d", in_arr[0],in_arr[size-1], size);
-	return output_string;
+
+	return generateReadingsInEachRange(in_arr, size, FIRST_ELEMENT, result);
 }

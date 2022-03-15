@@ -1,4 +1,5 @@
 #pragma once
 
 extern char output_string[20];
-char* findReadingsFromRange (int *, int);
+char* getRangeAndReadings (int *, int, char*);
+enum elementIndex {FIRST_ELEMENT};
