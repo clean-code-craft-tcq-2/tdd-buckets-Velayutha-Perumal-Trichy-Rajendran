@@ -23,7 +23,7 @@ TEST_CASE("detect the ranges and check if the number of readings matches the exp
   REQUIRE(strcmp(actual_result, expected_range) == 0);
 }
 
-TEST_CASE("detect the ranges and check if the number of readings matches the expected value.") {
+TEST_CASE("detect multiple ranges and check if the number of readings of each range matches the expected value.") {
   int input_range[]= {3, 5, 4, 3, 8, 10, 9, 7};
   const char *expected_range = "3-5,4;7-10,4";
   char readingRange[16];
