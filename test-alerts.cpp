@@ -25,7 +25,7 @@ TEST_CASE("detect the ranges and check if the number of readings matches the exp
 
 TEST_CASE("detect multiple ranges and check if the number of readings of each range matches the expected value.") {
   int input_range[]= {3, 5, 4, 3, 8, 10, 9, 7};
-  const char *expected_range = "3-5,4;7-10,4";
+  const char *expected_range = "3-5,4\n7-10,4";
   char readingRange[16];
   int no_of_elements = sizeof(input_range)/sizeof(input_range[0]);
   char *actual_result = getRangeAndReadings(input_range, no_of_elements, readingRange);
