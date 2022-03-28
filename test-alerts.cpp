@@ -30,7 +30,6 @@ TEST_CASE("detect multiple ranges and check if the number of readings of each ra
   char readingRange[OUTPUT_SIZE];
   int no_of_elements = sizeof(input_range)/sizeof(input_range[0]);
   char *actual_result = getRangeAndReadings(input_range, no_of_elements, readingRange);
-  printf ("The result is %s\n",actual_result);
   REQUIRE(strcmp(actual_result, expected_range) == 0);
 }
 

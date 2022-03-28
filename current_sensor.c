@@ -9,7 +9,7 @@ void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputI
 	for (i = 0; i < no_of_readings; i++)
 	{
 		adcValue = a2d_output[i];
-		outputInAmps[i] = (adcValue/ADC_12BIT) *10;
+		outputInAmps[i] = ((adcValue/ADC_12BIT) *10) + 0.5;
 	}
 	return;
 }
