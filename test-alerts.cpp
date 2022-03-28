@@ -33,7 +33,7 @@ TEST_CASE("detect multiple ranges and check if the number of readings of each ra
   REQUIRE(strcmp(actual_result, expected_range) == 0);
 }
 
-SCENARIO("find the current in amps from 12bit sensor output")
+/* SCENARIO("find the current in amps from 12bit sensor output")
 {
     GIVEN("12bit readings")
     {
@@ -55,7 +55,7 @@ SCENARIO("find the current in amps from 12bit sensor output")
         }
     }
 }
-
+ */
 SCENARIO("validate current in amps rounded off to nearest integer")
 {
     GIVEN("12bit readings")
