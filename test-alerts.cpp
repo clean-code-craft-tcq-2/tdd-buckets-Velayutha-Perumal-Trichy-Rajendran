@@ -37,7 +37,7 @@ SCENARIO("find the current in amps from 12bit sensor output")
 {
     GIVEN("12bit readings")
     {
-        int a2dOutput[2] = {2048, 3096};
+        int a2dOutput[2] = {2048, 3023};
         int expectedCurrentInAmps[2] = {5, 7};
 		int actualCurrentInAmps[2];
 		int no_of_elements = sizeof(a2dOutput)/sizeof(a2dOutput[0]);

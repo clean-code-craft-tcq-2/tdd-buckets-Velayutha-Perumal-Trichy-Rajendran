@@ -1,7 +1,6 @@
 #include "current_sensor.h"
 #include <stdio.h>
 
-
 void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputInAmps)
 {
 	int i;
