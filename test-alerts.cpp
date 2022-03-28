@@ -57,5 +57,27 @@ SCENARIO("find the current in amps from 12bit sensor output")
     }
 }
 
+SCENARIO("validate current in amps rounded off to nearest integer")
+{
+    GIVEN("12bit readings")
+    {
+        int a2dOutput[2] = {2048, 1111};
+        int expectedCurrentInAmps[2] = {5, 3};
+		int actualCurrentInAmps[2];
+		int no_of_elements = sizeof(a2dOutput)/sizeof(a2dOutput[0]);
+
+        WHEN("convertA2DOutputIntoAmps() is called with given 12bit integer array and number of elements")
+        {
+            convertA2DOutputIntoAmps(a2dOutput, no_of_elements, actualCurrentInAmps);
+            THEN("converted Amps readings will be rounded off to nearest integer and same is returned")
+            {
+                for (int i = 0; i < no_of_elements; i++)
+                {
+                    REQUIRE(actualCurrentInAmps[i] == expectedCurrentInAmps[i]);
+                }
+            }
+        }
+    }
+}
 
 
