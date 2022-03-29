@@ -1,21 +1,22 @@
 #include "current_sensor.h"
 #include <stdio.h>
 
-void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputInAmps)
+void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputInAmps, int adc_bit)
 {
-	int i;
+	int reading_index;
 	float adcValue;
-	int max_range = 1<<12;
+	int max_range = (1 << adc_bit) - 1;
 	
-	for (i = 0; i < no_of_readings; i++)
+	printf("%d\n", max_range);
+	for (reading_index = 0; reading_index < no_of_readings; reading_index++)
 	{
-		if (a2d_output[i] > max_range)
+		if (a2d_output[reading_index] > max_range)
 		{
-			outputInAmps[i] = -1;
+			outputInAmps[reading_index] = -1;
 		}
 		else{
-			adcValue = a2d_output[i];
-			outputInAmps[i] = ((adcValue/ADC_12BIT) *10) + 0.5;
+			adcValue = a2d_output[reading_index];
+			outputInAmps[reading_index] = ((adcValue/max_range) *10) + 0.5;
 		}
 	}
 	return;

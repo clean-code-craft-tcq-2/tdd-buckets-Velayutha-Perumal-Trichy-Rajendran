@@ -64,10 +64,11 @@ SCENARIO("validate current in amps rounded off to nearest integer")
         int expectedCurrentInAmps[2] = {5, 3};
 		int actualCurrentInAmps[2];
 		int no_of_elements = sizeof(a2dOutput)/sizeof(a2dOutput[0]);
+		int adc_bit = 12;
 
         WHEN("convertA2DOutputIntoAmps() is called with given 12bit integer array and number of elements")
         {
-            convertA2DOutputIntoAmps(a2dOutput, no_of_elements, actualCurrentInAmps);
+            convertA2DOutputIntoAmps(a2dOutput, no_of_elements, actualCurrentInAmps, adc_bit);
             THEN("converted Amps readings will be rounded off to nearest integer and same is returned")
             {
                 for (int i = 0; i < no_of_elements; i++)
@@ -87,10 +88,11 @@ SCENARIO("Report error Readings")
         int expectedCurrentInAmps[3] = {-1, 10, 7};
 		int actualCurrentInAmps[3];
 		int no_of_readings = sizeof(input_reading)/sizeof(input_reading[0]);
+		int adc_bit = 12;
 
         WHEN("convertA2DOutputIntoAmps() is called with given 12bit integer array and number of elements")
         {
-            convertA2DOutputIntoAmps(input_reading, no_of_readings, actualCurrentInAmps);
+            convertA2DOutputIntoAmps(input_reading, no_of_readings, actualCurrentInAmps, adc_bit);
             THEN("out of range input to convertA2DOutputIntoAmps returns -1")
             {
                 for (int i = 0; i < no_of_readings; i++)
@@ -102,3 +104,26 @@ SCENARIO("Report error Readings")
     }
 }
 
+SCENARIO("Check if converted positive 10bit current in amps rounded off to nearest integer")
+{
+    GIVEN(" '+'ve 10bit readings")
+    {
+        int a2dOutput[3] = {123, 567, 1222};
+        int expectedCurrentInAmps[3] = {2, 8, -1};
+		int actualCurrentInAmps[3];
+		int no_of_elements = sizeof(a2dOutput)/sizeof(a2dOutput[0]);
+		int adc_bit = 10;
+
+        WHEN("convertA2DOutputIntoAmps() is called with given 10bit integer array and number of elements")
+        {
+            convertA2DOutputIntoAmps(a2dOutput, no_of_elements, actualCurrentInAmps, adc_bit);
+            THEN("converted Amps readings will be rounded off to nearest integer and same is returned")
+            {
+                for (int i = 0; i < no_of_elements; i++)
+                {
+                    REQUIRE(actualCurrentInAmps[i] == expectedCurrentInAmps[i]);
+                }
+            }
+        }
+    }
+}
