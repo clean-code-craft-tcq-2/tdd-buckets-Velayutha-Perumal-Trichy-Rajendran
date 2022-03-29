@@ -1,3 +1,3 @@
 #pragma once
 
-void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputInAmps, int bit);
+void convertA2DOutputIntoAmps (int *a2d_output, int no_of_readings, int *outputInAmps, int adcbit, const int max_current);
