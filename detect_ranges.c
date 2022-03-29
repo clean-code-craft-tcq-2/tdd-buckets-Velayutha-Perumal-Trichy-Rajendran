@@ -35,6 +35,10 @@ char* generateReadingsInEachRange (int *in_arr, int size, int first_element, cha
 
 char* getRangeAndReadings (int *in_arr, int size, char *result)
 {
+	for (int index = 0; index < size; index++)
+	{
+		in_arr[index] = abs(in_arr[index]);
+	}
 	sortInOrder(in_arr, size);
 
 	return generateReadingsInEachRange(in_arr, size, FIRST_ELEMENT, result);

@@ -154,3 +154,23 @@ SCENARIO("Check if converted 10bit ADC output current in amps rounded off to nea
         }
     }
 }
+
+SCENARIO("detect multiple current ranges and check if the number of readings of each range matches the expected value irrespective of magnitude.")
+{
+    GIVEN(" current in amps")
+    {
+		int inputCurrentInAmps[]= {3, 5, -4, -3, 8, 10, -9, 7};
+		const char *expected_range = "3-5,4\n7-10,4";
+		char readingInEachRange[OUTPUT_SIZE];
+		int no_of_elements = sizeof(inputCurrentInAmps)/sizeof(inputCurrentInAmps[0]);
+		
+        WHEN("getRangeAndReadings() is called with given current readings and number of elements")
+        {
+            char *actual_result = getRangeAndReadings(inputCurrentInAmps, no_of_elements, readingInEachRange);
+            THEN("actual result is returned as string with total readings in each range")
+            {
+                REQUIRE(strcmp(actual_result, expected_range) == 0);
+            }
+        }
+    }
+}
