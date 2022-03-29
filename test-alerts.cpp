@@ -134,9 +134,9 @@ SCENARIO("Check if converted 10bit ADC output current in amps rounded off to nea
 {
     GIVEN(" '+'ve 10bit readings")
     {
-        int a2dOutput[3] = {123, 567, 1222, 456};
-        int expectedCurrentInAmps[3] = {-11, 2, -1, -2};
-		int actualCurrentInAmps[3];
+        int a2dOutput[4] = {123, 567, 1222, 456};
+        int expectedCurrentInAmps[4] = {-11, 2, -1, -2};
+		int actualCurrentInAmps[4];
 		int no_of_elements = sizeof(a2dOutput)/sizeof(a2dOutput[0]);
 		int adc_bit = 10; 
 		const int max_current = 15, min_current = -15;
