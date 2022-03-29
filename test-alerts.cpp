@@ -79,4 +79,26 @@ SCENARIO("validate current in amps rounded off to nearest integer")
     }
 }
 
+SCENARIO("Report error Readings")
+{
+    GIVEN("out of range 12bit readings")
+    {
+        int input_reading[3] = {4098, 4090, 3000};
+        int expectedCurrentInAmps[3] = {-1, 10, 7};
+		int actualCurrentInAmps[3];
+		int no_of_readings = sizeof(input_reading)/sizeof(input_reading[0]);
+
+        WHEN("convertA2DOutputIntoAmps() is called with given 12bit integer array and number of elements")
+        {
+            convertA2DOutputIntoAmps(input_reading, no_of_readings, actualCurrentInAmps);
+            THEN("out of range input to convertA2DOutputIntoAmps returns -1")
+            {
+                for (int i = 0; i < no_of_readings; i++)
+                {
+                    REQUIRE(actualCurrentInAmps[i] == expectedCurrentInAmps[i]);
+                }
+            }
+        }
+    }
+}
 
